@@ -188,6 +188,8 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for reporting s
 
 > **Models:** This sample is tested with Claude Sonnet 4.5 via Amazon Bedrock cross-region inference profiles. Legacy on-demand Claude 3.x model IDs have been retired by Bedrock; see `cdk/lib/constructs/lambdas/*/bedrock_client.py` for the model IDs in use.
 
+> **Context window:** When this solution was originally built, the available models were limited to a 200K-token context window. Newer models now support context windows of up to 1M tokens.
+
 ## Disclaimer
 
 The example provided in this repository is for experimental and educational purposes only. It demonstrates concepts and techniques but is not intended for direct use in production environments.
