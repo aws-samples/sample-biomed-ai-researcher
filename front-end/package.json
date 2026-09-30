@@ -35,7 +35,7 @@
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1",
+    "react-router-dom": "^6.30.6",
     "react18-json-view": "^0.2.9-canary.8",
     "slugify": "^1.6.6",
     "sonner": "^1.5.0",
