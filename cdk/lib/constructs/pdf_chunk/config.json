@@ -1,0 +1,52 @@
+{
+    "bedrock_data_automation": {
+        "project_name": "pdf-processing-project",
+        "project_description": "Automated PDF processing with page and element level granularity",
+        "enable_bounding_boxes": true,
+        "granularity_types": ["PAGE", "ELEMENT"],
+        "enable_generative_fields": true,
+        "text_format": "MARKDOWN",
+        "additional_file_format": "CSV"
+    },
+    "opensearch": {
+        "collection_type": "VECTORSEARCH",
+        "index_name": "pdf-chunks"
+    },
+    "step_function": {
+        "log_retention_days": 7,
+        "enable_tracing": true
+    },
+    "lambdas": {
+        "s3_reader": {
+            "name": "s3Reader",
+            "description": "Read and process S3 objects for BDA integration",
+            "type": "zip",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.13",
+            "env": {},
+            "handler": "index.lambda_handler",
+            "path": "lambdas/s3_reader",
+            "memory": 1024,
+            "timeout": 300,
+            "layers": ["boto3", "opensearch"]
+        }
+    },
+    "layers": {
+        "opensearch": {
+            "name": "opensearch_3.4.0",
+            "runtime": "PYTHON_3_13",
+            "architecture": "ARM_64",
+            "removalPolicy": "RETAIN",
+            "description": "Python OpenSearch Library",
+            "path": "layers/opensearch"
+        },
+        "boto3": {
+            "name": "boto3_1.35.0",
+            "runtime": "PYTHON_3_13",
+            "architecture": "ARM_64",
+            "removalPolicy": "RETAIN",
+            "description": "AWS SDK for Python",
+            "path": "layers/boto3"
+        }
+    }
+}

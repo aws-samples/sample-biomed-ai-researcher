@@ -1,0 +1,34 @@
+{
+    "results_table": [
+        {
+            "question": "question 1",
+            "answer": "answer 1",
+            "reasoning": "reasoning for answer 1",
+            "evidence": [
+                "quoted evidence 1 from text for answer 1 or N/A if no evidence exists",
+                "quoted evidence 2 from text for answer 1 or N/A if no evidence exists",
+                "quoted evidence 3 from text for answer 1 or N/A if no evidence exists"
+            ]
+        },
+        {
+            "question": "question 2",
+            "answer": "answer 2",
+            "reasoning": "reasoning for answer 2",
+            "evidence": [
+                "quoted evidence 1 from text for answer 2 or N/A if no evidence exists",
+                "quoted evidence 2 from text for answer 2 or N/A if no evidence exists",
+                "quoted evidence 3 from text for answer 2 or N/A if no evidence exists"
+            ]
+        },
+        {
+            "question": "question 3",
+            "answer": "answer 3",
+            "reasoning": "reasoning for answer 3",
+            "evidence": [
+                "quoted evidence 1 from text for answer 3 or N/A if no evidence exists",
+                "quoted evidence 2 from text for answer 3 or N/A if no evidence exists",
+                "quoted evidence 3 from text for answer 3 or N/A if no evidence exists"
+            ]
+        }
+    ]
+}

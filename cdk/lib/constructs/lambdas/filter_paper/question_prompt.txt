@@ -1,0 +1,7 @@
+For the paper related to the condition of {condition}, answer these questions:
+Is the article a primary research article investigating data from human, animals, or cells?
+Does the article provide data about condition: {condition}?
+Is the article not an opinion paper such as a perspective or editorial?
+Is the article not a review article?
+Is the article not report results from a statistical analysis of pre-existing data for {condition}?
+Does the article not mention {condition} as an example?

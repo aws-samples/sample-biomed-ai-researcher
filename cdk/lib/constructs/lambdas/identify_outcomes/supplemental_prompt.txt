@@ -1,0 +1,10 @@
+{"variant_to_outcome": 
+    {"KRAS G13D": "none",
+    "KRAS G12V": "positive",
+    "KRAS G12A": "negative", 
+    …}} 
+
+Skip the preamble and find all genetic variants and biomarkers and the associated outcomes as it related to the effect of the treatment and therapeutic drugs on the disease {condition}
+
+{ "variant_to_outcome":
+    {

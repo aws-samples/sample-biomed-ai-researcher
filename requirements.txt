@@ -1,0 +1,7 @@
+Pillow
+boto3
+pypdfium2
+beautifulsoup4
+mypy-boto3-bedrock-runtime
+tenacity
+cryptography

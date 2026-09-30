@@ -1,0 +1,51 @@
+{
+    "header": "For the condition: {condition} and the biomarkers {biomarkers}",
+    "questions": {
+        "Does this study refer to the condition in relation to any of these biomarkers: ? If so:": [
+            "What is the evidence to suggest involvement of the condition in the biomarker?",
+            "In which tissues is the condition acting to influence in the biomarker?",
+            "What is the direction of effect between the condition and any the biomarker?",
+            "In which pathways is the condition implicated?"
+        ],
+        "Does this study report findings from conditiontic variation or mutations in the condition in humans? If so:": [
+            "What is the affected condition and amino acid change? If there are multiple, list each separately.",
+            "Describe the patient population (how many affected individuals, how many carriers of the genotype, etc) and their clinical features (symptoms and signs)",
+            "What is the inheritance model?",
+            "Was functional or experimental characterization performed to identify the likely impact of the variant/mutations on condition/protein expression and/or condition/protein function, and what were the results of these experiments? Is there any evidence that the variants are increasing or decreasing protein function?"
+        ],
+        "Does this study involve research performed on human subjects, using non-conditiontic/pharmacological perturbation of the condition? If so:": [
+            "Is this a randomized controlled trial or a non-randomized observational study?",
+            "What are the main characteristics of the study population (size, disease/indication, exclusion criteria, etc)?",
+            "What intervention was studied?",
+            "What are the details of the intervention (dosage, length/frequency/route of administration, etc).",
+            "What were the outcomes studied, and what were the results reported in the study?"
+        ],
+        "Does this study report research performed on an animal, using conditiontic perturbation of the condition? If so:": [
+            "What animal(s) were studied and how many? Provide any details of the studied animals (e.g. what is the background of the mouse).",
+            "What perturbation was applied? (e.g. knockout of whole condition, overexpression, knock-in of specific variant, etc)",
+            "Was the perturbation performed limited to only some tissues or of the whole body? If the former, what tissues or cell types were perturbed, and what method was used?",
+            "Was an inducible perturbation performed? At what time point?",
+            "What were the conditions of the experiment? (e.g. was the animal fed a specific diet, and for how long?)",
+            "What outcomes were measured in the animals and what were the results?"
+        ],
+        "Does this study involve research performed on an animal, using non-genetic/ pharmacological perturbation of the gene? If so:": [
+            "What animal(s) were studied and how many? Provide any details of the studied animals (e.g. what is the background of the mouse).",
+            "What perturbation was applied? (e.g. small molecule or antibody modulating the gene).",
+            "Provide any details relevant to the perturbation, including substance name, length of administration, dosage, intervals between dosing, route of administration, etc.",
+            "What were the conditions of the experiment? (e.g. was the animal fed a specific diet, and for how long?)",
+            "What outcomes were measured in the animals and what were the results?"
+        ],
+        "Does this study involve research performed on cells only (in vitro), using genetic perturbation of the gene? If so:": [
+            "What type of cell(s) were studied? Primary cells, or cell lines? Provide any details of the studied cells.",
+            "What perturbation was applied? (e.g. knockout of whole gene, overexpression, knock-in of specific variant, etc)",
+            "What were the conditions of the experiment? (e.g. where the cells exposed to certain environmental conditions?)",
+            "What outcomes were measured in the experiment and what were the results?"
+        ],
+        "Does this study involve research performed on cells only (in vitro), using non-genetic/pharmacological perturbation of the gene? If so:": [
+            "7a. What type of cell(s) were studied? Primary cells, or cell lines? Provide any details of the studied cells.",
+            "7b. What perturbation was applied? (e.g. small molecule or antibody modulating the gene).",
+            "7c. Provide any details relevant to the perturbation, including substance name, length of administration, dosage, intervals between dosing, route of administration, etc.",
+            "7d. What were the conditions of the experiment? (e.g. was the animal fed a specific diet, and for how long?)"
+        ]
+    }
+}

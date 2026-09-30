@@ -1,0 +1,158 @@
+# Project .gitignore
+
+# ----------------------
+# TypeScript / CDK / Node.js
+# ----------------------
+# Compiled JavaScript files
+**/*.js
+**/*.d.ts
+!ui/src/css.d.ts
+!jest.config.js
+!**/cdk/jest.config.js
+
+# CDK specific
+**/.cdk.staging
+**/cdk.out
+**/cdk-outputs.json
+
+# Node.js
+**/node_modules/
+**/npm-debug.log
+# Lockfiles are committed for reproducible installs (cdk/ and front-end/).
+# Ignore only a stray root-level lockfile (there is no root package.json).
+/package-lock.json
+
+# ----------------------
+# Python
+# ----------------------
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.ruff_cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env/
+.vite/
+
+# ----------------------
+# Database
+# ----------------------
+*.sqlite3
+*.db
+
+# ----------------------
+# IDE / Editors
+# ----------------------
+# VSCode
+**/.vscode
+**/.amazonq
+**/.kiro
+**/.jest-cache
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ----------------------
+# OS Files
+# ----------------------
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ----------------------
+# Project specific
+# ----------------------
+# Temporary data files
+temp_data/
+**/temp/
+
+# Log files
+**/logs/
+*.log
+
+# Don't ignore keep files which might be used to maintain directory structure
+!.gitkeep
+
+# Processed data files that should be generated, not stored
+# Uncomment if needed
+# data/*.processed.json
+
+# Environment variables
+.env
+.env.*
+
+# Local development configuration
+config.local.json
+**/local_settings.*
+
+# Generated frontend config (contains deployment-specific values)
+front-end/src/config.json
+
+# Documents and test data that should not be committed
+*.pdf
+*.pdf.md
+*.docx
+~$*
+*.ipynb
+
+# CDK context cache (contains account-specific data)
+cdk/cdk.context.json
+
+# Internal security-scan / audit reports (not for public release)
+ProbeScanExport-*.csv
+probe-scan-clean.csv
+cdk-nag-output.txt
+cdk-nag-report.csv
+bandit-scan-python.json
+npm-audit-*.json
+retire-scan-*.json
+SCAN_EVIDENCE.md
+
+# Internal working / prep docs (not for public release)
+OPEN_SOURCE_CHANGELOG.md
+TODO-OPEN-SOURCE.md
+THREAT_MODEL.md
+SECURITY_REMEDIATION.md
+SECURITY_TEST_PLAYBOOK.md
+CODE_CLEANUP.md
+
+# Internal scan tuning + session test script (not for public release)
+.gitleaksignore
+scripts/security-test.sh

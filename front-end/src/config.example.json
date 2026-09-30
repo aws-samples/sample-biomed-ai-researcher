@@ -1,0 +1,8 @@
+{
+  "apiEndpoint": "<API_GATEWAY_URL>",
+  "clientId": "<COGNITO_USER_POOL_CLIENT_ID>",
+  "identityPool": "<COGNITO_IDENTITY_POOL_ID>",
+  "userPool": "<COGNITO_USER_POOL_ID>",
+  "bucket": "<S3_SOURCE_BUCKET_NAME>",
+  "region": "<AWS_REGION>"
+}

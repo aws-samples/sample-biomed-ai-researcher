@@ -1,0 +1,10 @@
+For the response, create a table that includes the answers to the user's questions within a JSON formatted table which has columns for: the original question, the answer, reasoning for the answer, and quoted evidence from the text that supports the answer.  Include rows even for questions that do not have data to answer.  Each question should be separated into their own rows in the table. The final table MUST include answers to all of the user's questions.  Consolidate your observations in an summary section with a simple yes or no answer that indicates of all the criterion were met.  Analyze the answers to the users questions and answer yes if all the criterion are met.  Explain your final answer.
+
+Skip the preamble and ensure the output looks like:
+{format}
+
+Document:
+{document}
+
+Include only the JSON output in your response and nothing else. Review the output carefully and ensure that the JSON is well-formatted and matches the instructions
+as it will be ingested into downstream applications. Be sure to escape any special characters that appear within any table fields.

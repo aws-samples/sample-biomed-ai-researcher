@@ -1,0 +1,108 @@
+** Third-Party Licenses **
+
+This project includes or depends on the following third-party software.
+
+------
+
+** Python Dependencies (Lambda functions) **
+
+Pillow - https://github.com/python-pillow/Pillow
+License: HPND (Historical Permission Notice and Disclaimer)
+
+boto3 - https://github.com/boto/boto3
+License: Apache-2.0
+
+pypdfium2 - https://github.com/nicegui-dev/pypdfium2
+License: Apache-2.0 / BSD-3-Clause
+
+beautifulsoup4 - https://www.crummy.com/software/BeautifulSoup/
+License: MIT
+
+mypy-boto3-bedrock-runtime - https://github.com/youtype/mypy_boto3_builder
+License: MIT
+
+tenacity - https://github.com/jd/tenacity
+License: Apache-2.0
+
+cryptography - https://github.com/pyca/cryptography
+License: Apache-2.0 / BSD-3-Clause
+
+------
+
+** CDK Dependencies (Infrastructure) **
+
+aws-cdk-lib - https://github.com/aws/aws-cdk
+License: Apache-2.0
+
+constructs - https://github.com/aws/constructs
+License: Apache-2.0
+
+@aws-solutions-constructs/aws-eventbridge-lambda - https://github.com/awslabs/aws-solutions-constructs
+License: Apache-2.0
+
+cdk-nag - https://github.com/cdklabs/cdk-nag
+License: Apache-2.0
+
+------
+
+** Frontend Dependencies (React application) **
+
+react - https://github.com/facebook/react
+License: MIT
+
+react-dom - https://github.com/facebook/react
+License: MIT
+
+react-router-dom - https://github.com/remix-run/react-router
+License: MIT
+
+amazon-cognito-identity-js - https://github.com/aws-amplify/amplify-js
+License: Apache-2.0
+
+@aws-sdk/client-bedrock - https://github.com/aws/aws-sdk-js-v3
+License: Apache-2.0
+
+@aws-sdk/client-bedrock-runtime - https://github.com/aws/aws-sdk-js-v3
+License: Apache-2.0
+
+@radix-ui/* (accordion, checkbox, dialog, hover-card, label, popover, progress, radio-group, select, slot, switch, tabs, toast) - https://github.com/radix-ui/primitives
+License: MIT
+
+@phosphor-icons/react - https://github.com/phosphor-icons/react
+License: MIT
+
+class-variance-authority - https://github.com/joe-bell/cva
+License: Apache-2.0
+
+clsx - https://github.com/lukeed/clsx
+License: MIT
+
+cmdk - https://github.com/pacocoursey/cmdk
+License: MIT
+
+lucide-react - https://github.com/lucide-icons/lucide
+License: ISC
+
+next-themes - https://github.com/pacocoursey/next-themes
+License: MIT
+
+react18-json-view - https://github.com/nicodemus/react18-json-view
+License: MIT
+
+slugify - https://github.com/simov/slugify
+License: MIT
+
+sonner - https://github.com/emilkowalski/sonner
+License: MIT
+
+tailwind-merge - https://github.com/dcastil/tailwind-merge
+License: MIT
+
+tailwindcss-animate - https://github.com/jamiebuilds/tailwindcss-animate
+License: MIT
+
+@tailwindcss/container-queries - https://github.com/tailwindlabs/tailwindcss-container-queries
+License: MIT
+
+vaul - https://github.com/emilkowalski/vaul
+License: MIT

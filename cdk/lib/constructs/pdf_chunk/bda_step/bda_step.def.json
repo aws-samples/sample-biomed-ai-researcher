@@ -1,0 +1,252 @@
+{
+  "Comment": "Run BDA Flow",
+  "StartAt": "PrepareS3Uri",
+  "States": {
+    "PrepareS3Uri": {
+      "Type": "Pass",
+      "Parameters": {
+        "inputS3Uri.$": "States.Format('s3://{}/{}', $.bucket, $.key)",
+        "originalInput.$": "$"
+      },
+      "Next": "InvokeDataAutomationAsync"
+    },
+    "InvokeDataAutomationAsync": {
+      "Type": "Task",
+      "Parameters": {
+        "DataAutomationProfileArn": "${data_automation_profile_arn}",
+        "InputConfiguration": {
+          "S3Uri.$": "$.inputS3Uri"
+        },
+        "OutputConfiguration": {
+          "S3Uri.$": "States.Format('${output_s3_uri}bdaoutput/{}', $.originalInput.key)"
+        },
+        "DataAutomationConfiguration": {
+          "Stage": "LIVE",
+          "DataAutomationProjectArn": "${data_automation_project_arn}"
+        }
+      },
+      "Resource": "arn:aws:states:::aws-sdk:bedrockdataautomationruntime:invokeDataAutomationAsync",
+      "Next": "CheckInvocationResult",
+      "ResultPath": "$.automationResult"
+    },
+    "CheckInvocationResult": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.automationResult.InvocationArn",
+          "IsPresent": true,
+          "Next": "StoreDynamoDBRecord"
+        }
+      ],
+      "Default": "InvocationFailureState"
+    },
+    "StoreDynamoDBRecord": {
+      "Type": "Pass",
+      "Parameters": {
+        "jobId.$": "States.UUID()",
+        "createdAt.$": "$$.State.EnteredTime",
+        "originalData.$": "$"
+      },
+      "Next": "PutDynamoDBItem"
+    },
+    "PutDynamoDBItem": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:putItem",
+      "Parameters": {
+        "TableName": "${dynamodb_table_name}",
+        "Item": {
+          "jobId": {
+            "S.$": "$.jobId"
+          },
+          "timestamp": {
+            "S.$": "$.createdAt"
+          },
+          "invocation_arn": {
+            "S.$": "$.originalData.automationResult.InvocationArn"
+          },
+          "input_s3_uri": {
+            "S.$": "$.originalData.inputS3Uri"
+          },
+          "project_name": {
+            "S": "${project_name}"
+          },
+          "status": {
+            "S": "IN_PROGRESS"
+          },
+          "updated_at": {
+            "S.$": "$.createdAt"
+          }
+        }
+      },
+      "Next": "Wait",
+      "ResultPath": "$.dynamoResult"
+    },
+    "InvocationFailureState": {
+      "Type": "Fail",
+      "Comment": "Failed to invoke BDA - InvocationArn not returned",
+      "Cause": "Bedrock Data Automation invocation failed - no InvocationArn received"
+    },
+    "Wait": {
+      "Type": "Wait",
+      "Seconds": 30,
+      "Next": "GetDataAutomationStatus"
+    },
+    "GetDataAutomationStatus": {
+      "Type": "Task",
+      "Parameters": {
+        "InvocationArn.$": "$.originalData.automationResult.InvocationArn"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:bedrockdataautomationruntime:getDataAutomationStatus",
+      "Next": "CheckStatus",
+      "ResultPath": "$.statusResult"
+    },
+    "CheckStatus": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.statusResult.Status",
+          "StringEquals": "InProgress",
+          "Next": "Wait"
+        },
+        {
+          "Variable": "$.statusResult.Status",
+          "StringEquals": "Failure",
+          "Next": "UpdateFailureStatus"
+        },
+        {
+          "Variable": "$.statusResult.Status",
+          "StringEquals": "Success",
+          "Next": "ParallelProcessing"
+        }
+      ],
+      "Default": "UpdateFailureStatus"
+    },
+    "ParallelProcessing": {
+      "Type": "Parallel",
+      "Branches": [
+        {
+          "StartAt": "UpdateSuccessStatus",
+          "States": {
+            "UpdateSuccessStatus": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::dynamodb:updateItem",
+              "Parameters": {
+                "TableName": "${dynamodb_table_name}",
+                "Key": {
+                  "jobId": {
+                    "S.$": "$.jobId"
+                  },
+                  "timestamp": {
+                    "S.$": "$.createdAt"
+                  }
+                },
+                "UpdateExpression": "SET #status = :status, updated_at = :updated_at",
+                "ExpressionAttributeNames": {
+                  "#status": "status"
+                },
+                "ExpressionAttributeValues": {
+                  ":status": {
+                    "S": "COMPLETED"
+                  },
+                  ":updated_at": {
+                    "S.$": "$$.State.EnteredTime"
+                  }
+                }
+              },
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "ReadS3Output",
+          "States": {
+            "ReadS3Output": {
+              "Type": "Task",
+              "Resource": "${s3_reader_lambda_arn}",
+              "Parameters": {
+                "s3Uri.$": "$.statusResult.OutputConfiguration.S3Uri"
+              },
+              "Retry": [
+                {
+                  "ErrorEquals": ["Lambda.ServiceException", "Lambda.AWSLambdaException", "Lambda.SdkClientException"],
+                  "IntervalSeconds": 2,
+                  "MaxAttempts": 6,
+                  "BackoffRate": 2
+                }
+              ],
+              "Catch": [
+                {
+                  "ErrorEquals": ["States.TaskFailed"],
+                  "Next": "S3ReadFailure",
+                  "ResultPath": "$.s3ReadError"
+                }
+              ],
+              "Next": "S3ReadSuccess"
+            },
+            "S3ReadSuccess": {
+              "Type": "Pass",
+              "Parameters": {
+                "s3ReaderResult.$": "$"
+              },
+              "End": true
+            },
+            "S3ReadFailure": {
+              "Type": "Pass",
+              "Parameters": {
+                "s3ReadError.$": "$.s3ReadError"
+              },
+              "End": true
+            }
+          }
+        }
+      ],
+      "Next": "ProcessingComplete",
+      "ResultPath": "$.parallelResults"
+    },
+    "ProcessingComplete": {
+      "Type": "Pass",
+      "Parameters": {
+        "jobId.$": "$.jobId",
+        "status": "COMPLETED",
+        "inputS3Uri.$": "$.originalData.inputS3Uri",
+        "outputS3Uri.$": "$.statusResult.OutputConfiguration.S3Uri",
+        "processingResult.$": "$.statusResult",
+        "parallelResults.$": "$.parallelResults"
+      },
+      "End": true
+    },
+    "UpdateFailureStatus": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:updateItem",
+      "Parameters": {
+        "TableName": "${dynamodb_table_name}",
+        "Key": {
+          "jobId": {
+            "S.$": "$.jobId"
+          },
+          "timestamp": {
+            "S.$": "$.createdAt"
+          }
+        },
+        "UpdateExpression": "SET #status = :status, updated_at = :updated_at",
+        "ExpressionAttributeNames": {
+          "#status": "status"
+        },
+        "ExpressionAttributeValues": {
+          ":status": {
+            "S": "FAILED"
+          },
+          ":updated_at": {
+            "S.$": "$$.State.EnteredTime"
+          }
+        }
+      },
+      "Next": "FailureState"
+    },
+    "FailureState": {
+      "Type": "Fail",
+      "Comment": "BDA processing failed",
+      "Cause": "Bedrock Data Automation processing failed"
+    }
+  }
+}

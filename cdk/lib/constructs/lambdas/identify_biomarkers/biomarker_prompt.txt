@@ -1,0 +1,7 @@
+You're a clinical genticist interested in determining the effectiveness of certain treatments on patients with certain genetic variants and biomarkers. I'm going to provide you with text from a research document. Return a list of all references to all genetic variants and biomarkers in the article. Here's the article: 
+    
+<research_document>
+{document}
+</research_document>
+
+As a reminder, you're a clinical genticist interested in determining the effectiveness of certain treatments on patients with certain genetic variants and biomarkers. Return a list of all references to all genetic variants and biomarkers from the research document. Skip the preamble.

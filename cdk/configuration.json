@@ -1,0 +1,176 @@
+{
+    "appname": "ScienceDataChunking",
+    "region": "us-east-1",
+    "VPCCIDR": "10.0.0.0/16",
+    "VPC_PRIVACY": "EGRESS",
+    "MAXAZs": 3,
+    "VPCID": null,
+    "VPCSecurityGroup": null,
+    "opensearch": {
+        "index_name": "documentindex",
+        "collection_name": "chunkcollection"
+    },
+    "s3_buckets": {
+        "s3_source_bucket": "documentsource-a7f29bd3",
+        "s3_target_bucket": "documentoutput-b8e51c42",
+        "s3_llm_bucket": "llmoutput-c9d73f61"
+    },
+    "lambdas": {
+        "upload_file": {
+            "name": "uploadFile",
+            "description": "URL to upload file to S3",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_function.lambda_handler",
+            "path": "lambdas/presign_upload",
+            "memory": 512,
+            "timeout": 15
+        },
+        "s3_trigger": {
+            "name": "s3_trigger_upload",
+            "description": "File has been uploaded to S3",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_function.lambda_handler",
+            "path": "lambdas/s3_upload",
+            "memory": 512,
+            "timeout": 15
+        },
+        "filter": {
+            "name": "filter_paper",
+            "description": "See if paper should be processed",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_function.lambda_handler",
+            "path": "lambdas/filter_paper",
+            "memory": 512,
+            "timeout": 600
+        },
+        "identify_biomarkers": {
+            "name": "biomarkers",
+            "description": "Determine the biomarkers from the paper",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_function.lambda_handler",
+            "path": "lambdas/identify_biomarkers",
+            "memory": 1024,
+            "timeout": 600
+        },
+        "identify_outcomes": {
+            "name": "outcomes",
+            "description": "Determine the outcomes by biomarkers from the paper",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_function.lambda_handler",
+            "path": "lambdas/identify_outcomes",
+            "memory": 1024,
+            "timeout": 600
+        },
+        "summary": {
+            "name": "summary",
+            "description": "Summarize the paper based on the condition and ",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_function.lambda_handler",
+            "path": "lambdas/paper_summary",
+            "memory": 1024,
+            "timeout": 600
+        },
+        "dynamo_data": {
+            "name": "dynamodata",
+            "description": "Retrieve the documents data from DynamoDB Table",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_function.lambda_handler",
+            "path": "lambdas/dynamo_data",
+            "memory": 1024,
+            "timeout": 600
+        },
+        "s3_get_data": {
+            "name": "s3data",
+            "description": "Retrieve the summary, biomarkers, outcomes from S3 bucket",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_function.lambda_handler",
+            "path": "lambdas/s3_get_data",
+            "memory": 1024,
+            "timeout": 600
+        },
+        "s3_proxy": {
+            "name": "s3proxy",
+            "description": "S3 CRUD operations proxy for UI",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_handler.lambda_handler",
+            "path": "lambdas/s3-proxy",
+            "memory": 1024,
+            "timeout": 600
+        },
+        "ui_storage_crud": {
+            "name": "uistoragecrud",
+            "description": "DynamoDB CRUD operations for UI storage",
+            "type": "code",
+            "deployment_vpc": "EGRESS",
+            "runtime": "python3.14",
+            "env": {
+                "UPLOAD_TTL": "3600"
+            },
+            "handler": "lambda_handler.lambda_handler",
+            "path": "lambdas/ui-storage-crud",
+            "memory": 1024,
+            "timeout": 600
+        }
+    },
+    "DynamoDB": {
+        "DocumentIndex": {
+            "TableName": "document_index",
+            "PrimaryKey": "file_id"
+        },
+        "Prompts": {
+            "TableName": "prompts",
+            "PrimaryKey": "prompt_id",
+            "SecondaryKey": "prompt_group"
+        },
+        "UIStorage": {
+            "TableName": "ui_storage",
+            "PrimaryKey": "id",
+            "SecondaryKey": "timestamp"
+        }
+    }
+}

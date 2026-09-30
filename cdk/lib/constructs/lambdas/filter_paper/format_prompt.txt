@@ -1,0 +1,26 @@
+{
+    "summary": {
+        "final answer": "simple yes or no"
+        "reasoning": "why did you answer yes or no"
+    },
+    "results_table": [
+        {
+            "question": "question 1",
+            "answer": "answer 1",
+            "reasoning": "reasoning for answer 1",
+            "evidence": "quote to support your reasoning 1 from text",
+        },
+        {
+            "question": "question 2",
+            "answer": "answer 2",
+            "reasoning": "reasoning for answer 2",
+            "evidence": "quote to support your reasoning 2 from text",
+        },
+        {
+            "question": "question 3",
+            "answer": "answer 3",
+            "reasoning": "reasoning for answer 3",
+            "evidence": "quote to support your reasoning 3 from text",
+        },
+    ]
+}

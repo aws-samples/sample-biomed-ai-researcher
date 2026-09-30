@@ -1,0 +1,13 @@
+Answer the following questions based on the provided document.  Then create a table that includes the answers to the questions within a JSON formatted table
+which has columns for: the original question, the answer, reasoning for the answer, and evidence in the form of quotes from the document that supports the answer.
+The evidence should be a direct quotes from the source material. Include rows even for questions that do not have data to answer. Each question and sub question should be
+separated into their own rows in the table. The final table MUST include answers to all of the questions.  Be sure to escape any special characters that appear
+within any table fields.
+
+Skip the preamble and ensure the output document looks like:
+{format}
+
+Document:
+{document}
+
+Include only the JSON output in your response and nothing else. Review the output carefully and ensure that the JSON is well-formatted and matches the instructions as it will be ingested into downstream applications. Be sure to escape any special characters that appear within any table fields.  Retain the question numbering and the full question in the output text.

@@ -1,0 +1,115 @@
+[
+  {
+    "id": 1241,
+    "paperId": "PMC38653246",
+    "status": 0,
+    "title": "Loss of GPR75 protects against non-alcoholic fatty liver disease and body fat accumulation",
+    "genes": ["GPR75"],
+    "traits": ["Liver Disease"],
+    "results": { "genesMatched": ["GPR75", "CTNNB1"] },
+    "checks": [
+      "BMI, obesity, and metabolic traits",
+      "Human, genetic",
+      "Animal, genetic",
+      "In vitro, genetic"
+    ]
+  },
+  {
+    "id": 2265,
+    "paperId": "PMC8743382",
+    "status": 0,
+    "title": "Mice Lacking Gpr75 are Hypophagic and Thin",
+    "genes": ["BRCA1"],
+    "traits": ["BMI"],
+    "results": { "genesMatched": ["BRCA1"] },
+    "checks": [
+      "BMI, glucose tolerance, adiposity, insulin resistance",
+      "Animal, genetic",
+      "In vitro, genetic"
+    ]
+  },
+  {
+    "id": 3254,
+    "paperId": "PMC10033368",
+    "status": 0,
+    "title": "Gpr75-deficient mice are protected from high fat diet-induced obesity",
+    "genes": ["GPR75", "rs4988235"],
+    "traits": ["Obesity", "Diabetes"],
+    "results": { "genesMatched": ["rs4988235"] },
+    "checks": [
+      "Obesity, adiposity, insulin resistance",
+      "Animal, genetic",
+      "Animal, non-genetic",
+      "In vitro, genetic"
+    ]
+  },
+  {
+    "id": 4684,
+    "paperId": "PMC10275396",
+    "status": 0,
+    "title": "Sequencing of 640,000 exomes identifies GPR75 variants associated with protection from obesity",
+    "genes": ["GPR75", "1: 162497250"],
+    "traits": ["obesity", "Diabetes"],
+    "results": { "genesMatched": ["GPR75", "1: 162497250"] },
+    "checks": [
+      "BMI, obesity, body fat mass, glucose tolerance, insulin sensitivity",
+      "Human, genetic",
+      "Animal, genetic",
+      "In vitro, genetic and non-genetic"
+    ]
+  },
+  {
+    "id": 4364,
+    "paperId": "PMC5875797",
+    "status": 0,
+    "title": "Inhibin βE (INHBE) is a possible insulin resistance-associated hepatokine identified by comprehensive gene expression analysis in human liver biopsy samples",
+    "genes": ["INHBE"],
+    "traits": ["Insulin resistance", "Diabetes"],
+    "results": { "genesMatched": ["INHBE"] },
+    "checks": [
+      "BMI, and metabolic traits",
+      "Human, genetic and non-genetic",
+      "Animal, genetic",
+      "In vitro, non-genetic"
+    ]
+  },
+  {
+    "id": 2267,
+    "paperId": "12345678",
+    "status": 0,
+    "title": "CRISPR-Cas9 Genome Editing: Opportunities and Challenges in Genomic Medicine",
+    "genes": ["GPR75", "CTNNB1"],
+    "traits": ["Heart disease"],
+    "results": { "genesMatched": ["GPR75", "CTNNB1"] },
+    "checks": [
+      "BMI and metabolic traits",
+      "Human, genetic",
+      "In vitro, genetic",
+      "In vitro, non-genetic"
+    ]
+  },
+  {
+    "id": 12334,
+    "paperId": "98765432",
+    "status": 0,
+    "title": "Unraveling the Epigenomic Landscape of Human Development and Disease",
+    "genes": ["GPR75"],
+    "traits": ["Heart disease"],
+    "results": { "genesMatched": ["GPR75", "CTNNB1"] },
+    "checks": [
+      "BMI and metabolic traits",
+      "Human, genetic",
+      "Human, non-genetic"
+    ]
+  },
+  {
+    "id": 2267,
+    "paperId": "45678901",
+    "status": 0,
+    "title": "Genomic Insights into the Evolution of Antibiotic Resistance",
+    "genes": ["GPR75", "CTNNB1"],
+    "traits": ["Heart disease"],
+    "results": { "genesMatched": ["GPR75", "CTNNB1"] },
+    "checks": ["BMI and metabolic traits", "Human, genetic", "Animal, genetic"]
+  }
+]
